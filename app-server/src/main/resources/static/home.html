@@ -1,0 +1,494 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <title>KpiCat</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+  <!-- Site -->
+  <meta name="description" content="mobile kpi dashboard">
+  <meta name="keywords" content="kpi,android,dashboard,api,rest,free,mobile">
+  <meta name="robots" content="index,follow">
+  <meta name="subject" content="build dashboard on mobile with REST API">
+
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <script src="js/jquery-1.12.0.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="bootstrap-4.0.0-beta.2-dist/js/bootstrap.min.js"></script>
+  
+
+  <link rel="stylesheet" type="text/css" href="bootstrap-4.0.0-beta.2-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+
+  <style type="text/css">
+
+  html, body {
+    font-family: Tahoma, Geneva, sans-serif;
+    color: #4b4f56;
+    overflow-x: hidden; 
+  }
+
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+
+  body {
+    margin-bottom: 80px;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    padding-top: 30px;
+    color: #FFFFFF;
+    background-color: #232323;
+  }
+
+  .footer a {
+    color: #FFFFFF;
+  }
+
+  .navbar {
+    padding: 0.5rem 0rem;
+  }
+  
+  .navbar-brand {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  
+  .navbar-toggler {
+    border-color: white;
+  }
+
+  .navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(256,256,256, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
+
+  .navbar-nav a {
+    color: #FFFFFF;
+    font-size: 20px;
+  }
+
+  .navbar-nav > li > a:hover,
+  .navbar-nav > li > a:focus {
+    background-color: #28a745;
+    color: white;
+  }
+
+  #demo-img {
+    float:right; 
+    margin-right: 20px;
+  }
+
+  #code-sample {
+    margin-left: 20px; 
+    font-size: 0.8em;
+    width: 340px;
+  }
+
+  .sample-img {
+    width: 30%;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+
+  #header {
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(to right bottom, #57bc90, #00a8e8);
+    padding-bottom: 30px;
+    height: 300px;
+  }
+
+  #header:after {
+    background: linear-gradient(to right bottom, #57bc90, #00a8e8);
+    top: -420px;
+    content: '';
+    display: block;
+    height: 700px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: -1;
+    transform: skewY(-10deg);
+    transform-origin: 100% 0;   
+  }
+
+  #samples {
+    position: absolute;
+    top: 100px;
+    width: 50%;
+    right: -120px;
+    transform: rotate(-10deg);
+    transform-origin: 10% 20%;
+    z-index: 2;
+    max-width:100%;
+  }
+
+  #mobile {
+    padding-top: 150px; 
+    padding-bottom: 40px; 
+    z-index: 3;
+  }
+
+  .get-mobile {
+    border: 2px solid #57bc90;
+    color: #57bc90;
+    padding: 20px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2.2em;
+    font-weight: bold;
+  }
+
+  #pre-footer {
+    margin-top: 300px;
+    padding-bottom: 20px;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+  }
+
+  #pre-footer:before {
+    background: linear-gradient(to left top, #57bc90, #00a8e8);
+    content: '';
+    display: block;
+    height: 550px;
+    position: absolute;
+    top: -350px;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    transform: skewY(-10deg);
+    transform-origin: 100% 0;
+  }  
+  
+
+  #diagram {
+    margin-top: 300px;
+  }
+
+  
+  @media only screen and (max-width: 576px) {
+    #samples {
+      display: none;
+    }
+
+    hr {
+      width: 50px !important;
+    }
+
+    .big-icon {
+      font-size: 18px;
+    }
+
+    h2, h3 {
+      font-size: 26px;
+    }
+
+    #mobile {
+      padding-top: 50px; 
+      padding-bottom: 10px;
+    }
+
+    #diagram {
+      margin-top: 280px;
+    }
+
+    #header:after {
+      top: -250px;
+    }
+
+    #pre-footer:before {
+      top: -200px;
+    }
+
+    #demo-img {
+      float: none;
+      text-align: center;
+    }
+
+    #code-sample {
+      display: none;
+    }
+
+    .footer {
+      padding-top: 10px;
+    }
+  }  
+
+  hr {
+    border:none;
+    border-top: 10px dotted #ff3b3f;
+    color: #fff;
+    background-color:#fff;
+    width: 100px;
+    background-color: transparent;
+  }
+
+  .big-icon {
+    font-size: 50px;
+  }
+
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109219705-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-109219705-1');
+  </script>
+
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+
+  </head>
+  <body>
+
+  
+  <div id="header">
+    <div class="container">
+      <nav class="navbar navbar-expand-sm animated fadeIn">
+        <div class="navbar-brand" href="#">KpiCat</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#my-nav" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="my-nav">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-3">
+            <li class="nav-item">
+              <a class="nav-link" href="gallery.html">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="quick-start.html">Quick Start</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="api.html">API</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="animated fadeInLeft" style="padding-top: 40px;">
+            <h1>Build mobile KPI dashboard with <span style="font-weight: bold;">{REST}</span> API</h1>
+            <h5 style="margin-top: 30px; color: #d9fcfe;">KpiCat is a mobile dashboard application that can be easily customized for company's needs with minimum integration and development efforts.</h5>
+            <h6 style="margin-top: 20px;">* Current in beta. Free access to all features.</h6>
+
+            <div class="row" style="padding-top: 10px;">
+              <div class="col-sm-6">
+                <a class="btn btn-success btn-lg btn-block" href="signup.html">Sign Up</a>
+              </div>
+              <div class="col-sm-6">
+                <a class="btn btn-primary btn-lg btn-block" href="login.html">Log In</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- head -->
+
+  <!-- samples -->
+  <div id="samples">
+    <div style="text-align: center;">
+      <img src="img/p1.png" class="sample-img">
+      <img src="img/p3.png" class="sample-img">
+      <img src="img/p2.png" class="sample-img">
+    </div>
+    <div style="text-align: center; margin-top: 4px;">
+      <img src="img/p4.png" class="sample-img">
+      <img src="img/p5.png" class="sample-img">
+    </div>
+  </div>
+  <!-- samples -->
+
+  <!-- diagram -->
+  <div class="container" id="diagram">
+    <div class="row">
+      <div class="col-md-6 text-primary text-center" style="font-size: 2em;">
+        <div class="row">
+          <div class="col-sm-6">
+            <i class="fa fa-tablet fa-fw big-icon" aria-hidden="true"></i>
+            <h3><strong>Free mobile app</strong></h3>
+          </div>
+          <div class="col-sm-6">
+            <i class="fa fa-cloud-upload fa-fw big-icon" aria-hidden="true"></i>
+            <h3><strong>RESTful API</strong></h3>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 30px;">
+          <div class="col-sm-6">
+            <i class="fa fa-users fa-fw big-icon" aria-hidden="true"></i>
+            <h3><strong>Role-based access control</strong></h3>
+          </div>
+          <div class="col-sm-6">
+            <i class="fa fa-picture-o fa-fw big-icon" aria-hidden="true"></i>
+            <h3><strong>Rich visualization gallery</strong></h3>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 30px;">
+          <div class="col-sm-6">
+            <i class="fa fa-hand-o-up fa-fw big-icon" aria-hidden="true"></i>
+            <h3><strong>Drag and Drop layout builder</strong></h3>
+          </div>
+          <div class="col-sm-6">
+            <i class="fa fa-magic fa-fw big-icon" aria-hidden="true"></i>
+            <h3><strong>Customizable themes</strong></h3>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 30px;">
+          <div class="col-sm-6">
+            <i class="fa fa-lock fa-fw big-icon" aria-hidden="true"></i>
+            <h3><strong>SSL secured connection</strong></h3>
+          </div>
+          <div class="col-sm-6">
+            <i class="fa fa-bell-o fa-fw big-icon" aria-hidden="true"></i>
+            <h3><strong>Push notification</strong></h3>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- diagram -->
+
+  <div id="mobile">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="text-center">
+          <h3 class="get-mobile">Get mobile app now <i class="fa fa-arrow-right" aria-hidden="true"></i></h3>
+          <a href='https://play.google.com/store/apps/details?id=com.kpicat.kpicat&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' style="width: 300px; margin-top: -15px;" /></a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div id="pre-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <i class="fa fa-tablet big-icon" aria-hidden="true"></i>
+            </li>
+            <li class="list-inline-item">
+              <hr>
+            </li>
+            <li class="list-inline-item">
+              <i class="fa fa-server big-icon" aria-hidden="true"></i>
+            </li>
+            <li class="list-inline-item">
+              <hr>
+            </li>
+            <li class="list-inline-item">
+              <i class="fa fa-cloud-upload big-icon" aria-hidden="true"></i>
+            </li>
+          </ul>
+
+          <h1 class="text-center">Push data to mobile in no time</h1>
+
+          <div class="row" style="margin-top: 20px;">
+            <div class="col-md-6 offset-md-3 text-center">
+              <h5 style="color: #d9fcfe;">Check our 
+                <a class="text-primary" href="api.html">API</a> documents. 
+                <a class="text-primary" href="quick-start.html">Start</a> integrating your workflow with KpiCat in minutes.
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-6">
+          <div id="demo-img">
+            <img src="img/demo.png">
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <pre id="code-sample"><code class="json">{
+  "apiKey": "api_0ZR8SpfUT5Ww_1MUKPgJuQ",
+  "componentId": "com_gL4Q28SKSyWRvy1B0TWSiA",
+  "timestamp": 1483228800,
+  "data": {
+    "backgroundColor": "#ffffff",
+    "type": "horizontalBox",
+    "leftText": {
+      "value": "KPI",
+      "size": 24,
+      "color": "#00a8e8"
+    },
+    "middleText": {
+      "value": "MOBILE",
+      "size": 24,
+      "color": "#ff3b3f"
+    },
+    "rightText": {
+      "value": "API",
+      "size": 24,
+      "color": "#57bc90"
+    }
+  }
+}         </code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer"> 
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-5">
+          &copy; 2018 KpiCat.com
+        </div>
+        <div class="col-sm-7">
+          <div class="row">
+            <div class="col">
+              <a href="terms.html">Terms of Service</a>
+            </div>
+            <div class="col">
+              <a href="privacy-policy.html">Privacy Policy</a>
+            </div>
+            <div class="col">
+              <a href="mailto:kpicat.help@gmail.com">Contact Us</a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>API</title>
+<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+<!-- Standard Meta -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://rawgit.com/flatiron/director/master/build/director.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109219705-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109219705-1');
+</script>
+
+<script>
+$(function() {
+
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  function showRouterView(route) {
+    var $currRouterView = $('#content').find('section[router-view=' + route + ']');
+
+    console.log(route);
+
+    $currRouterView.siblings().hide();
+    $currRouterView.show();
+
+    var $currMenuItem = $('.menu').find('li a[route-link=' + route + ']');
+    $currMenuItem.addClass('menu-active');
+    $currMenuItem.parent().siblings().find('a').removeClass('menu-active');
+  }
+
+  var routes = {
+    '/introduction': function() {
+      showRouterView("introduction");
+    },
+    '/update-component': function() {
+      showRouterView("update-component")
+    },
+    '/push-notification': function() {
+      showRouterView("push-notification")
+    }
+  };
+
+  var router = Router(routes);
+  router.init();
+});
+</script>
+
+<style>
+.page-wrapper, html, body {
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+}
+
+.page-wrapper {
+  font-family: Tahoma, Geneva, sans-serif;
+  color: #4b4f56;
+}
+
+.sidebar-title {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 39px;
+  background-color: #282a3c;
+  z-index: 1;
+  border-bottom: 1px solid white;
+}
+
+.sidebar-menu {
+  position:fixed;
+  top: 40px;
+  left: 0;
+  width: 200px;
+  bottom: 0;
+  overflow-y: auto;
+  background-color: #2c2e2e;
+  z-index: 1;
+}
+
+.right-col-full {
+  position:fixed;
+  top: 0;
+  left: 200px;
+  right: 0;
+  bottom: 0;
+  background-color: #e9ebee;
+  z-index: 2;
+  overflow-y: auto;
+}
+
+#title {
+  display: block;
+  color: #d6d7e1;
+  padding: 7px 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+}
+
+.menu li a {
+  display: block;
+  color: #d6d7e1;
+  padding: 11px 14px;
+  text-decoration: none;
+}
+
+.menu li a:hover,
+.menu-active {
+  background-color: #0066CC;
+}
+
+.menu-text {
+  margin-left: 11px;
+}
+
+.panel {
+  background-color: #FFF;
+  border-radius: 3px;
+  border: 1px solid #dddfe2;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+section {
+  display: none;
+  padding: 10px 15px;
+}
+
+.site {
+  text-decoration: none;
+}
+
+hr {
+  margin: 10px 0px;
+  border-top: 1px solid #e5e5e5;
+}
+
+h4, p {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 576px) {
+  .sidebar-title {
+    display: none;
+  }
+
+  .sidebar-menu {
+    display: none;
+  }
+
+  .right-col-full {
+    left: 0px;
+  }
+
+  section {
+    display: block !important;
+    padding: 10px 15px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+<div class="sidebar-title">
+  <div id="title">
+    <a class="site" href="home.html"><span style="color: #00a8e8;">Kpi</span><span style="color: #a9a9a9;">Cat</span></a> API
+  </div>
+</div>
+
+<div class="sidebar-menu">
+  <ul class="menu">
+    <li>
+      <a href="#/introduction" class="menu-active" route-link="introduction">
+        <span class="menu-text">Introduction</span>
+      </a>
+    </li>
+    <li>
+      <a href="#/update-component" route-link="update-component">
+        <span class="menu-text">Update a component</span>
+      </a>
+    </li>
+    <li>
+      <a href="#/push-notification" route-link="push-notification">
+        <span class="menu-text">Push notification</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="right-col-full">
+  <div id="content">
+
+    <section router-view="introduction" id="introduction-panel" style="display: block;">
+      <h2>Introduction</h2>
+      <div class="panel">
+        <p>
+          The REST API is provided to update the value of the <strong>Components</strong> created on the <strong>Page</strong> and send <strong><span style="color: #dc3545;">(New)</span> Push Notifications</strong> to moible. 
+
+          <p>Five types of components are supported.</p>
+          <ul>
+            <li>Horizontal Box</li>
+            <li>Vertical Box</li>
+            <li><span style="color: #dc3545; font-weight: bold;">New</span> - Bar Chart</li>
+            <li><span style="color: #dc3545; font-weight: bold;">New</span> - Line Chart</li>
+            <li><span style="color: #dc3545; font-weight: bold;">New</span> - Pie Chart</li>
+          </ul>
+        </p>
+        <p>
+          <span style="color: #dc3545; font-weight: bold;">Important</span> All users are granted BETA account during BETA period which has 50,000 api call limits per day.
+        </p>
+      </div>
+    </section>
+
+    <section router-view="update-component" id="update-component-panel">
+      <h2>Update a component</h2>
+      <h4>Modify the content of the component on the fly.</h4>
+      <div class="panel" style="height: 39px; padding: 0px; margin: 0px;">
+        <div style="padding: 10px 15px; float: left; font-weight: bold; background-color: #dc3545; color: white;">POST</div>
+        <div style="padding: 10px 15px; float: left;">
+          https://kpicat.com/api/component
+        </div>
+      </div>
+      <div class="panel">
+        <h4>Headers</h4>
+        <p>
+          Content-Type: application/json
+        </p>
+      </div>
+
+      <h4 style="margin-top: 20px;">Five types of components</h4>
+
+      <div class="panel">
+        <h4>1. Horizontal Box</h4>
+        <hr>
+        <h4>Request</h4>
+        <pre><code class="json">{
+  "componentId": "@component id - string",
+  "apiKey": "@account api key - string",
+  "timestamp": @unix timestamp - number,
+  "data": {
+    "backgroundColor": "@hex color - string",
+    "type": "@component type - string. Use horizontalBox here",
+    "leftText": {
+      "value": "@text value - string",
+      "size": @font size - int,
+      "color": "@hex color - string"
+    },
+    "middleText": {
+      "value": "@text value - string",
+      "size": @font size - int,
+      "color": "@hex color - string"
+    },
+    "rightText": {
+      "value": "@text value - string",
+      "size": @font size - int,
+      "color": "@hex color - string"
+    }
+  }
+}       </code></pre>
+            
+        <h4>Example</h4>
+        <pre><code class="json">{
+  "apiKey": "api_0ZR8SpfUT5Ww_1MUKPgJuQ",
+  "componentId": "com_gL4Q28SKSyWRvy1B0TWSiA",
+  "timestamp": 1483228800,
+  "data": {
+    "backgroundColor": "#ffffff",
+    "type": "horizontalBox",
+    "leftText": {
+      "value": "LEFT",
+      "size": 24,
+      "color": "#00a8e8"
+    },
+    "middleText": {
+      "value": "MIDDLE",
+      "size": 24,
+      "color": "#ff3b3f"
+    },
+    "rightText": {
+      "value": "RIGHT",
+      "size": 24,
+      "color": "#57bc90"
+    }
+  }
+}       </code></pre>
+      </div>
+
+      <div class="panel">
+        <h4>2. Vertical Box</h4>
+        <hr>
+        <h4>Request</h4>
+        <pre><code class="json">{
+  "componentId": "@component id - string",
+  "apiKey": "@account api key - string",
+  "timestamp": @unix timestamp - number,
+  "data": {
+    "backgroundColor": "@hex color - string.",
+    "type": "@component type - string. Use verticalBox here",
+    "topText": {
+      "value": "@text value - string",
+      "size":  @font size - int,
+      "color": "@hex color - string",
+    },
+    "bottomText": {
+      "value": "@text value - string",
+      "size":  @font size - int,
+      "color": "@hex color - string",
+    }
+  }
+}        </code></pre>
+            
+        <h4>Example</h4>
+        <pre><code class="json">{
+  "apiKey": "api_0ZR8SpfUT5Ww_1MUKPgJuQ",
+  "componentId": "com_gL6Q2BSKSyWRvyqB0TWSiA",
+  "timestamp": 1483228800,
+  "data": {
+    "backgroundColor": "#fcb064",
+    "type": "verticalBox",
+    "topText": {
+      "value": "TOP",
+      "size": 16,
+      "color": "#123456"
+    },
+    "bottomText": {
+      "value": "BOTTOM",
+      "size": 16,
+      "color": "#fcec64"
+    }
+  }
+}       </code></pre>
+      </div>
+
+      <div class="panel">
+        <h4>3. Bar Chart</h4>
+        <hr>
+        <h4>Request</h4>
+        <pre><code class="json">{
+  "componentId": "@component id - string",
+  "apiKey": "@account api key - string",
+  "timestamp": @unix timestamp - number,
+  "data": {
+    "backgroundColor": "@hex color - string",
+    "type": "@component type - string. Use barChart here",
+    "xNumber": "@if X-axis is number or string - boolean",
+    "height": "@chart height - int",
+    "points": [
+      {
+        "x": "@X-axis value - string",
+        "y": "@Y-axis value - float",
+        "color": "@hex color - string"
+      },
+      ......
+      ......
+    ]
+  }
+}       </code></pre>
+            
+        <h4>Example</h4>
+        <pre><code class="json">{
+  "componentId": "com_SoU6DT2RSFWrMX2sLylKvA",
+  "apiKey": "api_0ZR9SpfUTlWw_8MUKPgJuQ",
+  "timestamp": 1483228800,
+  "data": {
+    "backgroundColor": "#FFFFFF",
+    "type": "barChart",
+    "xNumber": false,
+    "height": 600,
+    "points": [
+      {
+        "x": "Jan",
+        "y": 20.0,
+        "color": "#123456"
+      },
+      {
+        "x": "Feb",
+        "y": 25.0,
+        "color": "#123456"
+      },
+      {
+        "x": "Mar",
+        "y": 15.0,
+        "color": "#123456"
+      }
+    ]
+  }
+}       </code></pre>
+      </div>
+
+      <div class="panel">
+        <h4>4. Line Chart</h4>
+        <hr>
+        <h4>Request</h4>
+        <pre><code class="json">{
+  "componentId": "@component id - string",
+  "apiKey": "@account api key - string",
+  "timestamp": @unix timestamp - number,
+  "data": {
+    "backgroundColor": "@hex color - string",
+    "type": "@component type - string. Use lineChart here",
+    "cubic": "@if it is a cubic curve - boolean",
+    "xNumber": "@if X-axis is number or string - boolean",
+    "fillColor": "@hex color - string"
+    "height": "@chart height - int",
+    "points": [
+      {
+        "x": "@X-axis value - string",
+        "y": "@Y-axis value - float",
+        "color": "@hex color - string"
+      },
+      ......
+      ......
+    ]
+  }
+}       </code></pre>
+            
+        <h4>Example</h4>
+        <pre><code class="json">{
+  "componentId": "com_SoU6DT2RSFWrMX2sLylKvA",
+  "apiKey": "api_0ZR9SpfUTlWw_8MUKPgJuQ",
+  "timestamp": 1483228800,
+  "data": {
+    "backgroundColor": "#eff9f9",
+    "type": "lineChart",
+    "cubic": true,
+    "xNumber": true,
+    "fillColor": "#9bf8ff",
+    "height": 600,
+    "points": [
+      {
+        "x": "0",
+        "y": 73.0,
+        "color": "#123456"
+      },
+      {
+        "x": "1",
+        "y": 26.0,
+        "color": "#123456"
+      },
+      {
+        "x": "2",
+        "y": 76.0,
+        "color": "#123456"
+      }
+    ]
+  }
+}       </code></pre>
+      </div>
+
+      <div class="panel">
+        <h4>5. Pie Chart</h4>
+        <hr>
+        <h4>Request</h4>
+        <pre><code class="json">{
+  "componentId": "@component id - string",
+  "apiKey": "@account api key - string",
+  "timestamp": @unix timestamp - number,
+  "data": {
+    "backgroundColor": "@hex color - string",
+    "type": "@component type - string. Use pieChart here",
+    "height": "@chart height - int",
+    "points": [
+      {
+        "x": "@X-axis value - string",
+        "y": "@Y-axis value - float",
+        "color": "@hex color - string"
+      },
+      ......
+      ......
+    ]
+  }
+}       </code></pre>
+            
+        <h4>Example</h4>
+        <pre><code class="json">{
+  "componentId": "com_SoU6DT2RSFWrMX2sLylKvA",
+  "apiKey": "api_0ZR9SpfUTlWw_8MUKPgJuQ",
+  "timestamp": 1483228800,
+  "data": {
+    "backgroundColor": "#FFFFFF",
+    "type": "pieChart",
+    "height": 600,
+    "points": [
+      {
+        "x": "Jan",
+        "y": 20.0,
+        "color": ""
+      },
+      {
+        "x": "Feb",
+        "y": 25.0,
+        "color": ""
+      },
+      {
+        "x": "Mar",
+        "y": 15.0,
+        "color": ""
+      }
+    ]
+  }
+}       </code></pre>
+      </div>
+
+      <div class="panel">
+        <h4>Response</h4>
+        <pre><code class="json">{
+  "message":"updateSuccess",
+  "limitRemaining":21
+}       </code></pre>
+      </div>
+    </section>
+
+    <section router-view="push-notification" id="push-notification-panel">
+      <h2>Push notification</h2>
+      <h4>Send a notification to all the users that have access to the page within the corporation.</h4>
+      <div class="panel" style="height: 39px; padding: 0px; margin: 0px;">
+        <div style="padding: 10px 15px; float: left; font-weight: bold; background-color: #dc3545; color: white;">POST</div>
+        <div style="padding: 10px 15px; float: left;">
+          https://kpicat.com/api/message
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>Headers</h4>
+        <p>
+          Content-Type: application/json
+        </p>
+      </div>
+
+      <div class="panel">
+        <h4>Request</h4>
+        <pre><code class="json">{
+  "apiKey": "@account api key - string",
+  "pageName": "@page name - string",
+  "message": "@message - string"
+}      </code></pre>
+      
+        <h4>Example</h4>
+        <pre><code class="json">{
+  "apiKey": "api_0ZR9SpfUTlWw_8MUKPgJuQ",
+  "pageName": "NYC-DB-1",
+  "message": "CPU running at 100%"
+}     </code></pre>
+      </div>
+
+      <div class="panel">
+        <h4>Response</h4>
+        <pre><code class="json">Message sent successfully.</code></pre>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+</div>
+</body>
+</html>

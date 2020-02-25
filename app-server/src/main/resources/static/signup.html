@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign Up</title>
+<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<script src="js/jquery-1.12.0.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="bootstrap-3.3.6/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="bootstrap-3.3.6/css/bootstrap.min.css">
+<script src="bootstrap-3.3.6/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/kpicat-login-custom.css">
+
+<style>
+#error-msg {
+  color: #ff3b3f;
+  text-align: center;
+  width: 100%;
+}
+</style>
+
+
+<script>
+$(function() {
+
+  function validateEmail(email) {
+    var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return reg.test(email);
+  }
+
+  $(document).keypress(function(e) {
+    if (e.keyCode == 13 || e.keyCode == 10) {
+      register();
+    }
+  });
+
+  $("#register-btn").click(function(e) {
+    e.preventDefault();
+    register();
+  });
+
+  function register() {
+  	var email = $("#email").val();
+  	var username = $("#username").val();
+    var corpName = $("#corp-name").val();
+    var password = $("#password").val();
+    var confirmPassword = $("#confirm-password").val();
+
+    // validate all input fields.
+
+    if (isEmpty(email)) {
+      $("#error-msg").html("Email cannot be empty");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      $("#error-msg").html("Invalid email address");
+      return;
+    }
+
+    if (password != confirmPassword) {
+      $("#error-msg").html("Password does not match the confirm password");
+      return;
+    }
+
+    if (isEmpty(password) || password.length < 8 || password.length > 32) {
+      $("#error-msg").html("Password must be 8-32 characters long");
+      return;
+    }
+
+    if (isEmpty(corpName)) {
+      $("#error-msg").html("Corporation cannot be empty");
+      return;
+    }
+
+    var user = {};
+    user.email = email;
+    user.username = username;
+    user.password = password;
+    user.corpName = corpName;
+
+    var data = JSON.stringify(user);
+
+    $("#error-msg").html("");
+    $.ajax({
+      type: "POST",
+      url: 'auth/register',
+      contentType: 'application/json',
+      data: data,
+      success: function(result) {
+        if (result == 'good') {
+          window.location.replace("app.html#/page");
+        } else {
+          $("#error-msg").html(result);
+        }
+      },
+      error: function () {
+        $("#error-msg").html("Error to sign up.");
+      }
+    });
+  }
+
+  function isEmpty(str) {
+    return (!str || 0 === str.length);
+  }
+
+});
+</script>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <div class="account-wall">
+        
+        <div class="text-center login-title">
+        Sign Up
+        </div>
+
+        <form class="form-signin">
+          <label id="error-msg" style="margin-top: 5px;"></label>
+          <fieldset class="form-group form-group-lg">
+            <label>Email</label>
+            <input type="text" class="form-input" id="email" required autofocus>
+          </fieldset>
+          <fieldset class="form-group form-group-lg">
+            <label>Username</label>
+            <input type="text" class="form-input" id="username" required>
+          </fieldset>
+          <fieldset class="form-group form-group-lg">
+            <label>Corporation</label>
+            <input type="text" class="form-input" id="corp-name" required>
+          </fieldset>
+          <fieldset class="form-group form-group-lg">
+            <label>Password</label>
+            <input type="password" class="form-input" id="password" required>
+          </fieldset>
+          <fieldset class="form-group form-group-lg">
+            <label>Confirm Password</label>
+            <input type="password" class="form-input" id="confirm-password" required>
+          </fieldset>
+
+          <button class="login-button" type="button" id="register-btn">Sign Up</button>
+          <div style="text-align: center; margin-top: 5px;">
+            By clicking Sign Up, you agree to our <a href="terms.html">Terms of Service</a> and <a href="privacy-policy.html">Privacy Policy</a>.
+          </div>
+
+        </form>
+      </div>
+      <a href="login.html" class="text-center new-account">Has an account? Log in.</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

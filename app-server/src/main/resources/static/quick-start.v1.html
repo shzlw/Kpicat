@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quick Start</title>
+<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+<!-- Standard Meta -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<script src="js/jquery-1.12.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="bootstrap-3.3.6/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="bootstrap-3.3.6/css/bootstrap.min.css">
+<script src="bootstrap-3.3.6/js/bootstrap.min.js"></script>
+
+
+<style type="text/css">
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0; 
+  font-family: Tahoma, Geneva, sans-serif;
+  color: #4b4f56;
+}
+
+h2 {
+  margin-top: 0px;
+}
+
+section {
+  padding-bottom: 20px;
+
+}
+
+section:last-child {
+  border-bottom: none;
+}
+
+.affix {
+  top: 20px;
+}
+
+.affix {
+  width: 263px;
+}
+
+@media (min-width: 768px) {
+  .affix {
+    position: fixed;
+  }
+}
+
+a,
+a:hover,
+a:visited, 
+a:link, 
+a:active {
+  color: #00a8e8;
+  text-decoration: none;
+}
+
+.navbar {
+  background-color: transparent;
+  background: transparent;
+}
+
+.navbar-brand {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#nav {
+  padding-left: 0px;
+  font-size: 20px;
+  color: #00a8e8;
+}
+
+#nav li {
+  padding: 3px;
+  list-style-type: none;
+}
+
+#nav .active {
+  color: #FFFFFF;
+  background-color: #00a8e8;
+}
+
+p {
+  font-size: 20px;
+}
+
+img {
+  margin: 10px;
+  border: 1px solid #a9a9a9;
+}
+
+</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109219705-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109219705-1');
+</script>
+
+<script>
+$(function() {
+
+  $("#nav").affix({
+    offset: {     
+      top: $("#nav").offset().top
+    }
+  });
+
+});
+</script>
+</head>
+
+
+<body data-spy="scroll" data-target=".scrollspy">
+
+  <!-- head -->
+<nav class="navbar">
+  <div class="container" style="margin-top: 10px;">
+    <div class="navbar-header" style="padding-right: 10px;">
+      <button id="nav-toggle-button" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-cutom">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="home.html">
+        <span style="color: #00a8e8;">Kpi</span><span style="color: #a9a9a9;">Cat</span>
+      </a>
+      <span class="navbar-brand">Quick Start</span>
+    </div>
+  </div>
+</nav>
+<!-- head -->
+
+  <div class="container">
+    <div class="row">
+
+      <!-- vertical menu -->
+      <div class="col-md-3 scrollspy">
+        <ul id="nav" data-spy="affix">
+          <li><a href="#create-an-account">1. Create an account</a></li>
+          <li><a href="#create-a-page">2. Create a page</a></li>
+          <li><a href="#create-a-role">3. Create a role</a></li>
+          <li><a href="#create-a-user">4. Create a user</a></li>
+          <li><a href="#customize-the-app">5. Customize the app</a></li>
+          <li><a href="#call-rest-api">6. Call REST api</a></li>
+          <li><a href="#download-the-mobile-app">7. Download the mobile app</a></li>
+          <li><a href="#view-the-data">8. View the data</a></li>
+          <li><a href="#faq">9. FAQ</a></li>
+        </ul>
+      </div>
+      <!-- vertical menu -->
+
+      <!-- content -->
+      <div class="col-md-9">
+        <section id="create-an-account">
+          <h2><span class="fa fa-edit"></span>Create an account</h2>
+          <p>
+            1. Go to the <a href="https://kpicat.com/signup.html">sign up page</a> and enter the account information.
+          </p>
+          <ul>
+            <li><p><strong>Corporation</strong> will be used later when log into mobile app.</p></li>
+          </ul>
+          <img src="img/signup.png">
+        </section>
+
+        <section id="create-a-page">
+          <h2><span class="fa fa-edit"></span>Create a page</h2>
+          <p>1. Choose the <strong>Page</strong> tab and click <strong>Add</strong> button.
+          </p>
+          <img src="img/page1.png">
+          <p>2. Enter the <strong>Page Name</strong> and configure the layout.</p>
+          <ul>
+            <li><p><strong>Page Name</strong> is also used in the mobile app as menu item.</p></li>
+            <li><p><strong>Title Color</strong> defines the tool bar color in the moible app when this page is selected.</p></li>
+          </ul>
+          <p>3. Select the <strong>number of columns</strong> and then click <strong>Add Row</strong> button. A row will be added to the layout.</p>
+          <ul>
+            <li><p>The page layout is configured based on rows.</p></li>
+            <li><p>Each row can have up to 5 columns.</p></li>
+            <li><p>Each column is a component.</p></li>
+          </ul>
+          <img src="img/page2.png">
+          <p>4. <strong>Drag and Drop</strong> the row if it needs to be repositioned. Position of columns cannot be changed.
+          </p>
+          <ul>
+            <li><p>A row can be removed by selecting any columns within the row and then click <strong>Remove Row</strong> button. The <string>Entire Row</string> will then be removed.</p></li>
+          </ul>
+          <img src="img/page3.png">
+          <p>5. Click <strong>Save</strong> button to save the page. Then click the <strong>Component</strong> again to view the <strong>Component Id</strong>.
+          </p>
+          <ul>
+            <li><p><strong>Component Id</strong> will be used later in the REST api.</p></li>
+          </ul>
+          <img src="img/page4.png">
+        </section>
+
+        <section id="create-a-role">
+          <h2><span class="fa fa-edit"></span>Create a role</h2>
+          <p>1. Choose the <strong>Role</strong> tab and click <strong>Add</strong> button.</p>
+          <p>2. Enter <strong>Role Name</strong> and add <strong>Page</strong> to it.</p>
+          <img src="img/role.png">
+        </section>
+
+        <section id="create-a-user">
+          <h2><span class="fa fa-edit"></span>Create a user</h2>
+          <p>1. Choose the <strong>User</strong> tab and click <strong>Add</strong> button.</p>
+          <p>2. Enter the <strong>Username, Password</strong> and assign a <strong>Role</strong>.</p>
+          <img src="img/user1.png">
+          <p>3. The <strong>Registered Account</strong> can also be assigned a <strong>Role</strong> in the <strong>Config</strong> tab.</p>
+          <img src="img/user2.png">
+        </section>
+
+        <section id="customize-the-app">
+          <h2><span class="fa fa-edit"></span>Customize the app</h2>
+          <p>1. Choose the <strong>Config</strong> tab and click <strong>Mobile Customization</strong>.</p>
+          <p>2. Change the <strong>Colors</strong> and click <strong>Save</strong> button.</p>
+          <img src="img/splash1.png">
+        </section>
+
+        <section id="call-rest-api">
+          <h2><span class="fa fa-edit"></span>Call REST api</h2>
+          <p>
+            1. Check the <a href="api.html">API document</a> to send data.
+          </p>
+          <img src="img/api.png">
+        </section>
+
+        <section id="download-the-mobile-app">
+          <h2><span class="fa fa-edit"></span>Download the mobile app</h2>
+          <p>
+            1. Go to the Google Play Store to download the Android App.
+          </p>
+          <div>
+            <a href='https://play.google.com/store/apps/details?id=com.kpicat.kpicat&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' style="width: 240px; border: none;" /></a>
+          </div>
+        </section>
+
+        <section id="view-the-data">
+          <h2><span class="fa fa-edit"></span>View the data</h2>
+          <p>
+            1. Login and select the page you just created!
+          </p>
+        </section>
+
+        <section id="faq">
+          <h2><span class="fa fa-edit"></span>FAQ</h2>
+          <p><strong>Why cannot I see pages on my mobile app?</strong></p>
+          <p>
+          Normally this is caused by misconfiguration of roles. Please check if pages are added to the role and if the user is assigned a role. 
+          </p>
+          <hr>
+          <h5>
+            If you have more questions, feel free to <a href="mailto:kpicat.help@gmail.com">contact us</a>.
+          </h5>
+        </section>
+
+
+      </div>
+      <!-- content -->
+
+
+    </div>
+  </div>
+
+
+</body>
+</html>

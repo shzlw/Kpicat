@@ -1,0 +1,150 @@
+
+[v-cloak] { display:none; }
+
+.form-input {
+  margin-top: 5px;
+  outline: 0;
+  width: 100%;
+  padding: 3px 0px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #0066CC;
+  background: transparent;
+  font-size: 16px;
+}
+
+section {
+  padding: 10px 15px;
+}
+
+.panel {
+  background-color: #FFF;
+  border-radius: 3px;
+  border: 1px solid #dddfe2;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  background-color: #FFF;
+  border: 1px solid #dddfe2;
+  color: white;
+  padding: 8px 14px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 3px;
+}
+
+.btn.font-blue:hover {
+  background-color: #0066CC;
+  color: #FFF;
+}
+
+.bg-green {
+  background-color: #66CC66;
+}
+
+.bg-red {
+  background-color: #dc3545;
+}
+
+.bg-blue {
+  background-color: #0066CC;
+}
+
+.bg-orange {
+  background-color: #FF9966;
+}
+
+.font-blue {
+  color: #0066CC;
+}
+
+.btn-small {
+  font-size: 18px;
+  padding: 3px 6px;
+}
+
+label {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+table {
+  text-align: left;
+  border-collapse: collapse;
+  width: 100%;
+  vertical-align: middle;
+  border: 1px solid #dddfe2;
+  background-color: #FFF;
+}
+
+thead tr {
+  border-bottom: 2px solid #0066CC;
+}
+
+td {
+  border-top: 1px solid #dddfe2;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+th {
+  background-color: #eee;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+th, td {
+  font-size: 16px;
+  padding: 5px;
+}
+
+input[type='radio']:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #e9ebee;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #00a8e8;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+h3, h4 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+hr {
+  margin: 10px 0px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.pull-right {
+  float: right;
+}
