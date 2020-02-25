@@ -1,6 +1,6 @@
 # Kpicat
 
-Legacy personal project. Check [project landing page](https://shzlw.github.io/kpicat/home.html) for more details.
+Archived legacy project. Check [project landing page](https://shzlw.github.io/kpicat/home.html) to learn how it works!
 
 ## Project Structure
 - Web app server
@@ -13,6 +13,7 @@ Legacy personal project. Check [project landing page](https://shzlw.github.io/kp
 - Spring Boot
 - MySQL
 - Android
+- Firebase FCM
 
 ## Note
 - firebase FCM key is removed.
