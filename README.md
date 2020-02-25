@@ -1,6 +1,6 @@
 # Kpicat
 
-Legacy personal project.
+Legacy personal project. Check [project landing page](https://shzlw.github.io/kpicat/home.html) for more details.
 
 ## Project Structure
 - Web app server
